@@ -139,7 +139,7 @@ inline int insert_edge( long  * manchester_word, char edge, int edge_period, int
 }
 
 
-#define EDGE_THRESHOLD 4 /* Defines the voltage difference between two samples to detect a rising/falling edge. Can be increased depensing on the environment */
+#define EDGE_THRESHOLD 70 /* Defines the voltage difference between two samples to detect a rising/falling edge. Can be increased depensing on the environment */
 int oldValue = 0 ;
 int steady_count = 0 ;
 int dist_last_sync = 0 ;
@@ -156,6 +156,8 @@ void sample_signal_edge(){
   Serial.println(sensorValue, DEC);
   #endif
   #endif
+  //Serial.print("Sensor: ");
+  //Serial.println(sensorValue, DEC);
   if((sensorValue - oldValue) > EDGE_THRESHOLD) edge_val = 1 ;
   else if((oldValue - sensorValue) > EDGE_THRESHOLD) edge_val = -1;
   else edge_val = 0 ;
